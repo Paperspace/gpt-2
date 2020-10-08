@@ -40,7 +40,7 @@ class CharDataset(Dataset):
     
 text = open('minGPT-torch/input.txt', 'r').read() # don't worry we won't run out of file handles
 train_dataset = CharDataset(text, block_size) # one line of poem is roughly 50 characters
-train_loader = DataLoader(train_dataset, batch_size=256)
+train_loader = DataLoader(train_dataset, batch_size=64)
 
 model = GPT(vocab_size=train_dataset.vocab_size, 
             block_size=train_dataset.block_size,
@@ -54,8 +54,9 @@ model = GPT(vocab_size=train_dataset.vocab_size,
 lr_decay = LearningRateDecayCallback(learning_rate=6e-4, warmup_tokens=512*20,
                                     final_tokens=00*len(train_dataset)*block_size)
 
-trainer = Trainer(gpus=1, precision=16, max_epochs=1,
+trainer = Trainer(gpus=1, distributed_backend='ddp',
                     amp_backend='native',
+                    precision=16, max_epochs=1,
                     gradient_clip_val=1.0, 
                     callbacks=[lr_decay], 
                     progress_bar_refresh_rate=1, 
