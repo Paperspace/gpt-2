@@ -1,0 +1,23 @@
+apiKey: null
+clusterId: cliccf10g
+experimentEnv: null
+experimentType: MPI
+ignoreFiles: null
+masterCommand:  "mpirun --allow-run-as-root -np 1 --hostfile /generated/hostfile -bind-to none -map-by slot -x NCCL_DEBUG=INFO -mca pml ob1 -mca btl ^openib python minGPT-torch/minGPT.py"
+masterContainer: idkmoon/gpt2:v1
+masterContainerUser: null
+masterCount: 1
+masterMachineType: "P4000"
+modelPath: null
+modelType: null
+name: "gpt2-pl"
+projectId: prncecs0s
+workerCommand: "sleep infinity"
+workerContainer: idkmoon/gpt2:v1
+workerCount: 1
+workerMachineType: "P4000"
+workingDirectory: null
+workspace: ./
+workspacePassword: null
+workspaceRef: null
+workspaceUsername: null
