@@ -1,0 +1,16 @@
+clusterId: cl3795l6o
+command: nvidia-smi && python setup.py install && python gradient_train.py
+container: ufoym/deepo:pytorch-py36
+experimentEnv:
+    steps: 500
+machineType: P5000
+modelPath: /artifacts
+modelType: Custom
+name: gpt-train
+projectId: pr2l8tlk8
+workingDirectory: null
+workspace: ./
+ignoreFiles: trained_model/*,notebooks/*,build/*,dist/*,aitextgen.egg-info/*
+workspacePassword: null
+workspaceRef: null
+workspaceUsername: null
