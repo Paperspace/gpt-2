@@ -11,7 +11,7 @@ logging.basicConfig(
         level=logging.INFO
     )
 #app = FastAPI()
-app = FastAPI(root_path='model-serving/'+os.getenv("HOSTNAME").split('-')[0], root_path_in_servers=False)
+app = FastAPI(openapi_prefix='/model-serving/'+os.getenv("HOSTNAME").split('-')[0])
 ai = aitextgen(model="/models/pytorch_model_124M.bin", config="/models/config_124M.json", to_gpu=True)
 
 def get_model():
