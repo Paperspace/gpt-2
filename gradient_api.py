@@ -26,7 +26,7 @@ class GPT2Request(BaseModel):
 
 
 class GPT2Response(BaseModel):
-    generated: List[str]
+    generated: List[str] = Optional
 
 class HeartbeatResult(BaseModel):
     is_alive: bool
