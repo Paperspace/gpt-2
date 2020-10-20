@@ -8,6 +8,8 @@ from transformers.convert_gpt2_original_tf_checkpoint_to_pytorch import (
     convert_gpt2_checkpoint_to_pytorch,
 )
 from transformers.modeling_utils import Conv1D
+#from transformers.integrations import TensorBoardCallback
+#import tensorboardX
 from torch.nn import Linear, Embedding
 import torch
 import os
@@ -540,7 +542,8 @@ class aitextgen:
                     run_id,
                     save_gdrive,
                     progress_bar_refresh_rate,
-                )
+                ),
+
             ],
         )
 

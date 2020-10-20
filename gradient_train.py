@@ -8,12 +8,12 @@ import os
 from aitextgen import aitextgen
 
 steps = int(os.getenv('steps', 500))
-ai = aitextgen(tf_gpt2="124M", to_gpu=True)
+ai = aitextgen(tf_gpt2="124M", to_gpu=True, cache_dir="/artifacts")
 
 file_name = os.getenv('filename', "shakespeare.txt")
 
 ai.train(file_name,
-         output_dir='/artifacts',
+         output_dir='artifacts',
          line_by_line=False,
          from_cache=False,
          num_steps=steps,
@@ -24,7 +24,7 @@ ai.train(file_name,
          batch_size=1,      
          )
          
-ai = aitextgen(model="trained_model/pytorch_model.bin", config="trained_model/config.json", to_gpu=True)
+ai = aitextgen(model="artifacts/pytorch_model.bin", config="artifacts/config.json", to_gpu=True)
 
 ai.generate(n=5,
             batch_size=5,

@@ -1,8 +1,9 @@
 clusterId: cl3795l6o
-command: nvidia-smi && pip install tensorflow && pip3 install torch==1.6.0 -f https://download.pytorch.org/whl/cu101/torch_stable.html && python gradient_train.py
+command: nvidia-smi && python gradient_train.py && ls /artifacts && ls aitextgen/
 container: paperspace/gradient-walkthrough:gpt2
 experimentEnv:
     steps: 500
+    TOKENIZERS_PARALLELISM: true
 machineType: V100
 modelPath: /artifacts
 modelType: Custom

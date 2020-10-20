@@ -10,9 +10,9 @@ logging.basicConfig(
         datefmt="%m/%d/%Y %H:%M:%S",
         level=logging.INFO
     )
-app = FastAPI()
-#app = FastAPI(openapi_prefix='/model-serving/'+os.getenv("HOSTNAME").split('-')[0])
-ai = aitextgen(model="trained_model/pytorch_model.bin", config="trained_model/config.json", to_gpu=True)
+#app = FastAPI()
+app = FastAPI(openapi_prefix='/model-serving/'+os.getenv("HOSTNAME").split('-')[0])
+ai = aitextgen(model="/models/pytorch_model_124M.bin", config="/models/config_124M.json", to_gpu=True)
 
 def get_model():
     return ai
@@ -54,4 +54,4 @@ def get_heartbeat()-> HeartbeatResult:
     return heartbeat
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80, log_level="debug")
+    uvicorn.run(app, host="0.0.0.0", port=5000, log_level="debug")
