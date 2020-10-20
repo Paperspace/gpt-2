@@ -11,7 +11,7 @@ logging.basicConfig(
         level=logging.INFO
     )
 #app = FastAPI()
-app = FastAPI(root_path='/model-serving/'+os.getenv("HOSTNAME").split('-')[0])
+app = FastAPI(root_path='/model-serving/'+os.getenv("HOSTNAME").split('-')[0], root_path_in_servers=False)
 ai = aitextgen(model="/models/pytorch_model_124M.bin", config="/models/config_124M.json", to_gpu=True)
 
 def get_model():
@@ -26,13 +26,13 @@ class GPT2Request(BaseModel):
 
 
 class GPT2Response(BaseModel):
-    generated: List[str] = Optional
+    generated: List[str]
 
 class HeartbeatResult(BaseModel):
     is_alive: bool
 
 
-@app.post("/predict", response_model=GPT2Response)
+@app.post("/predict", response_model=List[str])
 def predict(request: GPT2Request, model = Depends(get_model)):
     response = ai.generate(n=request.samples,
             batch_size=request.samples,
