@@ -32,7 +32,7 @@ class HeartbeatResult(BaseModel):
     is_alive: bool
 
 
-@app.post("/predict", response_model=List[str])
+@app.post("/predict", response_model=GPT2Response)
 def predict(request: GPT2Request, model = Depends(get_model)):
     response = ai.generate(n=request.samples,
             batch_size=request.samples,
