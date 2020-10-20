@@ -12,7 +12,7 @@ logging.basicConfig(
     )
 #app = FastAPI()
 app = FastAPI(openapi_prefix='/model-serving/'+os.getenv("HOSTNAME").split('-')[0])
-ai = aitextgen(model="/models/pytorch_model_124M.bin", config="/models/config_124M.json", to_gpu=True)
+ai = aitextgen(model="/models/pytorch_model.bin", config="/models/config.json", to_gpu=True)
 
 def get_model():
     return ai
