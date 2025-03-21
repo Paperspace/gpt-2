@@ -1,7 +1,7 @@
 transformers
 datasets
 fire>=0.3.0
-pytorch-lightning==0.7.6
+pytorch-lightning==2.4.0
 gradient
 fastapi
 uvicorn
